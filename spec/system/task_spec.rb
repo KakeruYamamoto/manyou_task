@@ -37,7 +37,7 @@ RSpec.describe Task, type: :system do
 
         click_on 'Show'
 
-        expect(page).to have_content 'Task name:'
+        expect(page).to have_content 'bbbbbb'
      end
   end
 end
