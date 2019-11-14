@@ -4,11 +4,11 @@ RSpec.describe Task, type: :system do
   describe 'タスク一覧画面' do
     context 'タスクを作成した場合' do
       it '作成済みのタスクが表示されること' do
-        @task = Task.create(task_name: "bbbbbb")
+        @task = Task.create(task_name: 'aaaaaa',task_content: 'aaaaaa')
 
         visit tasks_path
 
-        expect(page).to have_content 'bbbbbb'
+        expect(page).to have_content 'aaaaaa'
       end
     end
   end
@@ -32,12 +32,13 @@ RSpec.describe Task, type: :system do
      context '任意のタスク詳細画面に遷移した場合' do
        it '該当タスクの内容が表示されたページに遷移すること' do
 
-        @task = Task.create(task_name: "bbbbbb")
+        @task = Task.create(task_name: 'aaaaaa',task_content: 'aaaaaa')
+
         visit tasks_path
 
-        click_on '詳細'
+        click_link '詳細'
 
-        expect(page).to have_content 'bbbbbb'
+        expect(page).to have_content 'aaaaaa'
      end
   end
 end
