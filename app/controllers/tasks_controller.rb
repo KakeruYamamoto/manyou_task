@@ -15,7 +15,7 @@ class TasksController < ApplicationController
   # GET /tasks/new
   def new
     @task = Task.new
-    render :new if @task.invalid?
+    # render :new if @task.invalid?
   end
 
   # GET /tasks/1/edit
