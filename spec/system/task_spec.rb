@@ -35,7 +35,7 @@ RSpec.describe Task, type: :system do
         @task = Task.create(task_name: "bbbbbb")
         visit tasks_path
 
-        click_on 'Show'
+        click_on '詳細'
 
         expect(page).to have_content 'bbbbbb'
      end
