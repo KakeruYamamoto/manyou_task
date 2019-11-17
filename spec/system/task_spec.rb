@@ -1,45 +1,49 @@
 require 'rails_helper'
 
-RSpec.describe Task, type: :system do
-  describe 'タスク一覧画面' do
-    context 'タスクを作成した場合' do
-      it '作成済みのタスクが表示されること' do
-        @task = Task.create(task_name: 'aaaaaa',task_content: 'aaaaaa')
+RSpec.describe "タスク管理機能", type: :system do
+  before do
+   # あらかじめタスク一覧のテストで使用するためのタスクを二つ作成する
 
-        visit tasks_path
-
-        expect(page).to have_content 'aaaaaa'
-      end
-    end
+   # backgroundの中に記載された記述は、そのカテゴリ内（describe "タスク管理機能", type: :system do から endまでの内部）
+   # に存在する全ての処理内（scenario内）で実行される
+   # （「タスク一覧のテスト」でも「タスクが作成日時の降順に並んでいるかのテスト」でも、background内のコードが実行される）
+   @task1 =  Task.create!(task_name: 'test_task_01', task_content: 'testtesttest')
+   @task2 = Task.create!(task_name: 'test_task_02', task_content: 'mofmofmofmof')
   end
 
-  describe 'タスク登録画面' do
-    context '必要項目を入力して、createボタンを押した場合' do
-      it 'データが保存されること'do
+  scenario 'タスク一覧のテスト' do
+    # @task = Task.create(task_name: 'aaaaaa',task_content: 'aaaaaa')
 
-      visit new_task_path
+    visit tasks_path
 
-      fill_in "タスク名", with: 'task'
-      fill_in "タスク詳細", with: 'task'
+    expect(page).to have_content 'test_task_01'
 
-      click_on '登録する'
-      expect(page).to have_content 'task'
-      end
-    end
   end
 
-  describe 'タスク詳細画面' do
-     context '任意のタスク詳細画面に遷移した場合' do
-       it '該当タスクの内容が表示されたページに遷移すること' do
+  scenario 'タスク作成のテスト' do
 
-        @task = Task.create(task_name: 'aaaaaa',task_content: 'aaaaaa')
+    visit new_task_path
 
-        visit tasks_path
+    fill_in "タスク名", with: 'task'
+    fill_in "タスク詳細", with: 'task'
 
-        click_link '詳細'
+    click_on '登録する'
+    expect(page).to have_content 'task'
 
-        expect(page).to have_content 'aaaaaa'
-     end
   end
-end
+
+  scenario 'タスク詳細のテスト' do
+
+    visit tasks_path(@task1.id)
+
+    expect(page).to have_content 'test_task_01'
+
+  end
+
+  scenario "タスクが作成日時の降順に並んでいるかのテスト" do
+
+
+
+  end
+
 end
