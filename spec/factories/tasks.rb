@@ -1,7 +1,17 @@
 FactoryBot.define do
+
   factory :task do
-    # 下記の内容は実際に作成するカラム名に合わせて変更してください
-  task_name { 'test_title' }
-  task_content { 'test_content' }
+    task_name { 'Factoryで作ったデフォルトのタイトル１' }
+    task_content { 'Factoryで作ったデフォルトのコンテント１' }
+  end
+
+  factory :second_task, class: Task do
+    task_name { 'Factoryで作ったデフォルトのタイトル２' }
+    task_content { 'Factoryで作ったデフォルトのコンテント２' }
+  end
+
+  factory :third_task, class: Task do
+    task_name { 'Factoryで作ったデフォルトのタイトル３' }
+    task_content { 'Factoryで作ったデフォルトのコンテント３' }
   end
 end

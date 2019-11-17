@@ -7,8 +7,13 @@ RSpec.describe "タスク管理機能", type: :system do
    # backgroundの中に記載された記述は、そのカテゴリ内（describe "タスク管理機能", type: :system do から endまでの内部）
    # に存在する全ての処理内（scenario内）で実行される
    # （「タスク一覧のテスト」でも「タスクが作成日時の降順に並んでいるかのテスト」でも、background内のコードが実行される）
-   @task1 =  Task.create!(task_name: 'test_task_01', task_content: 'testtesttest')
-   @task2 = Task.create!(task_name: 'test_task_02', task_content: 'mofmofmofmof')
+   # @task1 =  Task.create!(task_name: 'test_task_01', task_content: 'testtesttest')
+   # @task2 = Task.create!(task_name: 'test_task_02', task_content: 'mofmofmofmof')
+   # @task3 = Task.create!(task_name: 'test_task_03', task_content: 'samplesamplesample')
+
+  @task1 = FactoryBot.create(:task)
+  @task2 = FactoryBot.create(:second_task)
+  @task3 = FactoryBot.create(:third_task)
   end
 
   scenario 'タスク一覧のテスト' do
@@ -16,7 +21,7 @@ RSpec.describe "タスク管理機能", type: :system do
 
     visit tasks_path
 
-    expect(page).to have_content 'test_task_01'
+    expect(page).to have_content 'Factoryで作ったデフォルトのタイトル１'
 
   end
 
@@ -36,11 +41,15 @@ RSpec.describe "タスク管理機能", type: :system do
 
     visit tasks_path(@task1.id)
 
-    expect(page).to have_content 'test_task_01'
+    expect(page).to have_content 'Factoryで作ったデフォルトのタイトル１'
 
   end
 
   scenario "タスクが作成日時の降順に並んでいるかのテスト" do
+
+    visit tasks_path
+
+
 
 
 
