@@ -21,7 +21,7 @@ RSpec.describe "タスク管理機能", type: :system do
 
     visit tasks_path
 
-    expect(page).to have_content 'Factoryで作ったデフォルトのタイトル１'
+    expect(page).to have_content 'test_task_01'
 
   end
 
@@ -41,18 +41,15 @@ RSpec.describe "タスク管理機能", type: :system do
 
     visit tasks_path(@task1.id)
 
-    expect(page).to have_content 'Factoryで作ったデフォルトのタイトル１'
+    expect(page).to have_content 'test_task_01'
 
   end
 
   scenario "タスクが作成日時の降順に並んでいるかのテスト" do
 
+
     visit tasks_path
-
-
-
-
-
+    expect(page).to have_text /.*test_task_03.*\n.*\ntest_task_01.*/
   end
 
 end
