@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 2019_11_19_070223) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "deadline"
-    t.integer "priority"
+    t.string "priority"
     t.string "status"
     t.string "task_label"
   end
