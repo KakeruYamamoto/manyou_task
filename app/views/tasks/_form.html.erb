@@ -21,6 +21,11 @@
     <%= form.text_area :task_content %>
   </div>
 
+  <div class="field">
+    <%= form.label :deadline, "終了期限" %>
+    <%= form.datetime_field :deadline %>
+  </div>
+
   <div class="actions">
     <%= form.submit '登録する'%>
   </div>
