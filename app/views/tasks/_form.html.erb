@@ -26,6 +26,11 @@
     <%= form.datetime_field :deadline %>
   </div>
 
+  <div class="field">
+    <%= form.label :status, "ステータス" %>
+    <%= form.select :status, ['未着手','着手中','完了'] %>
+  </div>
+
   <div class="actions">
     <%= form.submit '登録する'%>
   </div>
