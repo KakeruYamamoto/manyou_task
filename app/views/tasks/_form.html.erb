@@ -20,6 +20,11 @@
     <%= form.label :task_content, "タスク詳細" %>
     <%= form.text_area :task_content %>
   </div>
+  
+  <div class="field">
+    <%= form.label :priority, "優先順位" %>
+    <%= form.number_field :priority %>
+  </div>
 
   <div class="field">
     <%= form.label :deadline, "終了期限" %>
