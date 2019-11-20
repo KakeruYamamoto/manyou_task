@@ -2,19 +2,8 @@
 
 <h1>タスク一覧</h1>
   <ul>
-    <li><%= link_to "終了期限でソートする", tasks_path(sort_expired: "true") %></li>
-    <li>
-      <p>検索</p>
-
-      <%= search_form_for @q, class: 'mb-5' do |form| %>
-          <% .form-group.row %>
-        <%= f.label :name_cont, 'タスク名', class: 'col-sm-2 col-form-label' %>
-          <% .col-sm-10 %>
-        <%= f.search_field :name_cont, class: 'form-control' %>
-          <% .form-group %>
-        <%= f.submit class: 'btn btn-outline-primary' %>
-      <% end %>
-    </li>
+    <li><%= link_to "終了期限でソートする", tasks_path(sort_deadline: "true") %></li>
+    <li><%= link_to "優先順位でソートする", tasks_path(sort_priority: "true") %></li>
   </ul>
 
 
