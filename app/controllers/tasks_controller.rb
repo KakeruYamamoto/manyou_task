@@ -8,7 +8,8 @@ class TasksController < ApplicationController
     if params[:sort_expired]
       @tasks = Task.order(deadline: :asc)
     end
-
+    @q = current_user.tasks.ransack(params[:q])
+    @tasks = @q.result(distinct: true).recent
   end
 
   # GET /tasks/1
@@ -64,6 +65,11 @@ class TasksController < ApplicationController
       format.html { redirect_to tasks_url, notice: 'タスクを削除しました' }
       format.json { head :no_content }
     end
+  end
+
+  def search
+    #Viewのformで取得したパラメータをモデルに渡す
+    @posts = Task.search(params[:search])
   end
 
   private
