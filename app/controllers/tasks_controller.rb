@@ -5,10 +5,19 @@ class TasksController < ApplicationController
   # GET /tasks.json
   def index
     @tasks = Task.order(created_at: :desc)
+    # binding.pry
     if params[:sort_deadline]
+      # binding.pry
       @tasks = Task.order(deadline: :asc)
-    else params[:sort_priority]
+    end
+
+    if params[:sort_priority]
+      # binding.pry
       @tasks = Task.order(priority: :asc)
+    end
+
+    if params.dig(:task, :search)
+      @tasks = Task.where("task_name LIKE ?", "%#{ params[:task][:task_name] }%").where("status LIKE ?", "%#{ params[:task][:status] }%")
     end
   end
 
