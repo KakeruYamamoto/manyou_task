@@ -5,6 +5,8 @@ ruby '2.6.5'
 
 gem 'kaminari'
 
+gem 'kaminari-bootstrap', '~> 3.0.1'
+
 gem 'pry-rails'
 gem 'better_errors'
 gem 'binding_of_caller'
