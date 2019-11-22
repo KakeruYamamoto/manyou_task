@@ -1,18 +1,18 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
-
+  PER = 8
   # GET /tasks
   # GET /tasks.json
   def index
+
     @tasks = Task.order(created_at: :desc)
-    # binding.pry
+    @tasksp = Task.page(params[:page]).per(PER)
+
     if params[:sort_deadline]
-      # binding.pry
       @tasks = Task.order(deadline: :asc)
     end
 
     if params[:sort_priority]
-      # binding.pry
       @tasks = Task.order(priority: :asc)
     end
 
