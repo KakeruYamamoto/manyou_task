@@ -6,10 +6,11 @@ class TasksController < ApplicationController
   def index
 
     # @tasks = Task.order(created_at: :desc)
-    @tasks = Task.page(params[:page]).per(5)
+    @tasks = Task.order(created_at: :desc).page(params[:page]).per(5)
     # binding.pry
     if params[:sort_deadline]
       @tasks = Task.order(deadline: :asc)
+      # ASC・・・昇順
     end
 
     if params[:sort_priority]

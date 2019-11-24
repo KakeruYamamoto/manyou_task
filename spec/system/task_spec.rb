@@ -14,6 +14,8 @@ RSpec.describe "タスク管理機能", type: :system do
   @task1 = FactoryBot.create(:task)
   @task2 = FactoryBot.create(:second_task)
   @task3 = FactoryBot.create(:third_task)
+
+
   end
 
   scenario 'タスク一覧のテスト' do
@@ -49,8 +51,8 @@ RSpec.describe "タスク管理機能", type: :system do
   scenario "タスクが作成日時の降順に並んでいるかのテスト" do
 
     visit tasks_path
-    save_and_open_page
-    expect(page).to have_text /.*test_task_03.*\n.*\ntest_task_01.*/
+    first(:link, "詳細").click
+    expect(page).to have_text "test_task_03"
   end
 
   scenario "終了期限のテスト" do
