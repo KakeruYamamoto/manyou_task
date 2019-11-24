@@ -47,11 +47,10 @@ RSpec.describe "タスク管理機能", type: :system do
 
 
   scenario "タスクが作成日時の降順に並んでいるかのテスト" do
-    save_and_open_page
+
     visit tasks_path
+    save_and_open_page
     expect(page).to have_text /.*test_task_03.*\n.*\ntest_task_01.*/
-
-
   end
 
   scenario "終了期限のテスト" do
