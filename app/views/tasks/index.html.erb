@@ -8,9 +8,9 @@
     <li>
     <%= form_with(model: Task.new,method: :get, url: tasks_path, local: true) do |f| %>
     <li><%= f.label :task_name, "タスク名で検索" %>
-        <%= f.text_field :task_name, class: 'form_control'  %></li>
+        <%= f.text_field :task_name, class: 'form_control' , id: 'search_task_names' %></li>
     <li><%= f.label :status, "状態検索" %>
-        <%= f.select :status, ['未着手','着手中','完了'], class: 'form_control',include_blank: true, selected: '' %></li>
+        <%= f.select :status, ['未着手','着手中','完了'], id: 'form_control', name: 'select_status',include_blank: true, selected: '' %></li>
         <%= f.hidden_field :search, value: 'true' %>
     <li><%= f.submit '検索'%></li>
       <% end %>

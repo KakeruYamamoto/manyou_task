@@ -57,9 +57,28 @@ RSpec.describe "タスク管理機能", type: :system do
 
   scenario "終了期限のテスト" do
 
+    visit tasks_path
+    first(:link, "詳細").click
+    expect(page).to have_text "2019/11/24"
   end
 
   scenario "ステータスのテスト" do
+
+    visit tasks_path
+    first(:link, "詳細").click
+    expect(page).to have_text "完了"
+  end
+
+  scenario "検索ロジックのmodelのテスト" do
+
+    visit tasks_path
+
+    fill_in "search_task_names", with: 'test_task_03'
+    select "完了", from: "task[status]"
+    click_on '検索'
+    expect(page).to have_content 'test_task_03',"完了"
+
+
 
   end
 
