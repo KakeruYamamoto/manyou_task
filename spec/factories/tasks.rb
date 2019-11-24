@@ -10,6 +10,7 @@ FactoryBot.define do
   factory :second_task, class: Task do
     task_name { 'test_task_02' }
     task_content { 'Factoryで作ったデフォルトのコンテント２' }
+
   end
 
   factory :third_task, class: Task do

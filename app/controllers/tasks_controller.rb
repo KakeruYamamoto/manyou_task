@@ -17,7 +17,7 @@ class TasksController < ApplicationController
     end
 
     if params.dig(:task, :search)
-      @tasks = Task.where("task_name LIKE ?", "%#{ params[:task][:task_name] }%").where("status LIKE ?", "%#{ params[:task][:status] }%")
+      @tasks = Task.where("task_name LIKE ?", "%#{ params[:task][:task_name] }%").where("status LIKE ?", "%#{ params[:task][:status] }%").page(params[:page]).per(5)
     end
   end
 
@@ -76,10 +76,12 @@ class TasksController < ApplicationController
     end
   end
 
-  def search
-    #Viewのformで取得したパラメータをモデルに渡す
-    @posts = Task.search(params[:search])
-  end
+  # def search
+  #   #Viewのformで取得したパラメータをモデルに渡す
+  #   # binding.pry
+  #   @tasks = Task.search(params[:search])
+  #   @tasks = @tasks.page(params[:page])
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.
