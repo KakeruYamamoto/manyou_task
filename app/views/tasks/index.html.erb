@@ -1,6 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <h1>タスク一覧</h1>
+<div class="menu">
   <ul>
     <li><%= link_to "終了期限でソートする", tasks_path(sort_deadline: "true") %></li>
     <li><%= link_to "優先順位でソートする", tasks_path(sort_priority: "true") %></li>
@@ -14,38 +15,38 @@
     <li><%= f.submit '検索'%></li>
       <% end %>
   </ul>
+</div>
 
-
-<table>
-  <thead>
-    <tr>
-      <th>タスク名</th>
-      <th>タスクの内容</th>
-      <th>優先順位</th>
-      <th>ステータス</th>
-      <th>終了期限</th>
-      <th>登録日時</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @tasks.each do |task| %>
+<div class="content">
+  <table>
+    <thead>
       <tr>
-        <td><%= task.task_name %></td>
-        <td><%= task.task_content %></td>
-        <td><%= task.priority %></td>
-        <td><%= task.status %></td>
-        <td><%= task.deadline %></td>
-        <td><%= task.created_at %></td>
-        <td><%= link_to '詳細', task %></td>
-        <td><%= link_to '編集', edit_task_path(task) %></td>
-        <td><%= link_to '削除', task, method: :delete, data: { confirm: '本当に削除しますか?' } %></td>
+        <th>タスク名</th>
+        <th>タスクの内容</th>
+        <th>優先順位</th>
+        <th>ステータス</th>
+        <th>終了期限</th>
+        <th>登録日時</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
-
+    </thead>
+    <tbody>
+      <% @tasks.each do |task| %>
+        <tr>
+          <td><%= task.task_name %></td>
+          <td><%= task.task_content %></td>
+          <td><%= task.priority %></td>
+          <td><%= task.status %></td>
+          <td><%= task.deadline %></td>
+          <td><%= task.created_at %></td>
+          <td><%= link_to '詳細', task %></td>
+          <td><%= link_to '編集', edit_task_path(task) %></td>
+          <td><%= link_to '削除', task, method: :delete, data: { confirm: '本当に削除しますか?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 <br>
 <%= paginate @tasks %>
 <%= link_to 'タスクを追加', new_task_path %>
