@@ -1,23 +1,26 @@
 <p id="notice"><%= notice %></p>
 
 <h1>タスク一覧</h1>
-<div class="menu">
-  <ul>
-    <li><%= link_to "終了期限でソートする", tasks_path(sort_deadline: "true") %></li>
-    <li><%= link_to "優先順位でソートする", tasks_path(sort_priority: "true") %></li>
-    <li>
+<div class="menu" class="container">
+
+  <p>
+  <nobr>
+    <%= link_to "終了期限でソートする", tasks_path(sort_deadline: "true") %>
+    <%= link_to "優先順位でソートする", tasks_path(sort_priority: "true") %>
+
     <%= form_with(model: Task.new,method: :get, url: tasks_path, local: true) do |f| %>
-    <li><%= f.label :task_name, "タスク名で検索" %>
-        <%= f.text_field :task_name, class: 'form_control' , id: 'search_task_names' %></li>
-    <li><%= f.label :status, "状態検索" %>
-        <%= f.select :status, ['未着手','着手中','完了'], id: 'form_control', name: 'select_status',include_blank: true, selected: '' %></li>
-        <%= f.hidden_field :search, value: 'true' %>
-    <li><%= f.submit '検索'%></li>
-      <% end %>
-  </ul>
+      <%= f.label :task_name, "タスク名で検索" %>
+      <%= f.text_field :task_name, class: 'form_control' , id: 'search_task_names' %>
+      <%= f.label :status, "状態検索" %>
+      <%= f.select :status, ['未着手','着手中','完了'], id: 'form_control', name: 'select_status',include_blank: true, selected: '' %>
+      <%= f.hidden_field :search, value: 'true' %>
+      <%= f.submit '検索'%>
+    <% end %>
+  </nobr>
+  </p>
 </div>
 
-<div class="content">
+<div class="content" class="container">
   <table>
     <thead>
       <tr>

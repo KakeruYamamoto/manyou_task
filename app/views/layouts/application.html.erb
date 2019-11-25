@@ -10,6 +10,28 @@
   </head>
 
   <body>
+    <h1></h1>
+    <header class="header" class="container" >
+      <!-- <ul class="row"> -->
+      <%# <% if logged_in? %>
+        <!-- <li class="col-md-3"><= link_to "プロフィール", user_path(current_user.id) %></li> -->
+        <!-- <li class="col-md-3"><= link_to "ログアウト", session_path(current_user.id), method: :delete %></li> -->
+        <!-- <li class="col-md-3"><= link_to "記事一覧", feeds_path %></li> -->
+        <!-- <li class="col-md-3"><= link_to "お気に入り一覧", favorite_users_path %></li> -->
+      <%# <% else %>
+        <!-- <li class="col-md-6"><= link_to "アカウント作成", new_user_path %></li> -->
+        <!-- <li class="col-md-6"><= link_to "ログイン", new_session_path %></li> -->
+      <%# <% end %>
+      <!-- </ul> -->
+    </header>
+
+    <div class="main" class="container">
     <%= yield %>
+    </div>
+
+    <footer class="footer">
+    <p>運営会社タスク株式会社</p>
+    <p>© 2000 - 2019 Copyright TASUKU Corp.</p>
+    </footer>
   </body>
 </html>
