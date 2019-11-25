@@ -9,12 +9,12 @@ class TasksController < ApplicationController
     @tasks = Task.order(created_at: :desc).page(params[:page]).per(5)
     # binding.pry
     if params[:sort_deadline]
-      @tasks = Task.order(deadline: :asc)
+      @tasks = Task.order(deadline: :asc).page(params[:page]).per(5)
       # ASC・・・昇順
     end
 
     if params[:sort_priority]
-      @tasks = Task.order(priority: :asc)
+      @tasks = Task.order(priority: :asc).page(params[:page]).per(5)
     end
 
     if params.dig(:task, :search)
