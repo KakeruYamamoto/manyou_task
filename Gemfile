@@ -3,6 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.5'
 
+<<<<<<< HEAD
 gem 'kaminari'
 
 
@@ -10,6 +11,9 @@ gem 'kaminari'
 gem 'faker'
 
 gem 'kaminari-bootstrap', '~> 3.0.1'
+=======
+gem 'bcrypt', '3.1.11'
+>>>>>>> user
 
 gem 'pry-rails'
 gem 'better_errors'

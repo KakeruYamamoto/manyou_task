@@ -7,6 +7,7 @@ class CreateTasks < ActiveRecord::Migration[5.2]
       t.integer :priority
       t.string :status
       t.string :task_label
+      t.references :user, foreign_key: true
 
       t.timestamps
     end

@@ -24,4 +24,12 @@ Task.create(
   deadline: "#{s}",
   status:"#{status.sample}"
 )
+name = Faker::Games::Pokemon.name
+email = Faker::Internet.email
+password = "password"
+User.create!(user_name: name,
+             email: email,
+             password: password,
+             password_confirmation: password,
+             )
 end

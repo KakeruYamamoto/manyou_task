@@ -1,0 +1,15 @@
+<h1 class="text-center">ログイン</h1>
+<%= form_with(scope: :session, url: sessions_path, local: true) do |f| %>
+
+  <% flash.each do |key, value| %>
+    <%= content_tag(:div, value, class: "#{key}") %>
+  <% end %>
+
+  <%= f.label :email, "メールアドレス" %>
+  <%= f.email_field :email %>
+
+  <%= f.label :password, "パスワード" %>
+  <%= f.password_field :password %>
+
+  <%= f.submit "Log in" %>
+<% end %>
