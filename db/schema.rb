@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_25_044641) do
+ActiveRecord::Schema.define(version: 2019_11_26_100904) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,13 +18,13 @@ ActiveRecord::Schema.define(version: 2019_11_25_044641) do
   create_table "tasks", force: :cascade do |t|
     t.string "task_name", null: false
     t.text "task_content", null: false
-    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "deadline"
     t.integer "priority"
     t.string "status"
     t.string "task_label"
+    t.bigint "user_id"
     t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 

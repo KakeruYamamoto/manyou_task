@@ -9,8 +9,11 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: '新しくアカウントを作りました' }
-        format.json { render :show, status: :created, location: @user }
+        if @user && @user.authenticate(user_params[:password])
+          session[:user_id] = @user.id
+          format.html { redirect_to user_path(@user.id), notice: '新しくアカウントを作りました' }
+          format.json { render :show, status: :created, location: @user }
+        end
       else
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
@@ -54,3 +57,8 @@ class UsersController < ApplicationController
                                  :password_confirmation)
   end
 end
+#
+#
+# params[:session] == nil
+#
+# params[:session][:password] == nil[:password]
