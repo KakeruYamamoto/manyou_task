@@ -20,5 +20,8 @@
   <%= @user.admin %>
 </p>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<% if  logged_in? %>
+  <% if @user.id == current_user.id %>
+  <%= link_to '編集', edit_user_path(@user) %>
+  <% end %>
+<% end %>

@@ -11,32 +11,36 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :user_name %>
-    <%= form.text_field :user_name %>
-  </div>
+  <div class="row">
+  <%= form_with(model: @user, local: true) do |f| %>
+    <div class="field">
+      <%= f.label :user_name %>
+      <%= f.text_field :user_name %>
+    </div>
 
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :email %>
-  </div>
+    <div class="field">
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+    </div>
 
-  <div class="field">
-    <%= form.label :password %>
-    <%= form.password_field :password %>
-  </div>
+    <div class="field">
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+    </div>
 
-  <div class="field">
-    <%= form.label :password_confirmation %>
-    <%= form.password_field :password_confirmation %>
-  </div>
+    <div class="field">
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation %>
+    </div>
 
-  <div class="field">
-    <%# <%= form.label :admin %>
-    <%# <%= form.check_box :admin %>
-  </div>
+    <div class="field">
+      <%# <%= form.label :admin %>
+      <%# <%= form.check_box :admin %>
+    </div>
 
-  <div class="actions">
-    <%= form.submit %>
+    <div class="actions">
+      <%= form.submit %>
+    </div>
+  <% end %>
   </div>
 <% end %>

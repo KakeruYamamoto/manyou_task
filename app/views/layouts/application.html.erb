@@ -10,15 +10,16 @@
   </head>
 
   <body>
-    <h1>TASK app</h1>
+    <h1>TASK APP</h1>
     <header class="header" class="container" >
       <ul class="row">
       <% if logged_in? %>
-        <li class="col-md-6"><%= link_to "ログアウト", session_path(current_user.id), method: :delete %></li>
-        <li class="col-md-6"><%= link_to "記事一覧", tasks_path %></li>
+        <li><%= link_to "ユーザ情報", user_path(current_user.id) %></li>
+        <li><%= link_to "ログアウト", session_path(current_user.id), method: :delete %></li>
+        <li><%= link_to "タスク一覧", tasks_path %></li>
       <% else %>
-        <li class="col-md-6"><%= link_to "アカウント作成", new_user_path %></li>
-        <li class="col-md-6"><%= link_to "ログイン", new_session_path %></li>
+        <li><%= link_to "アカウント作成", new_user_path %></li>
+        <li><%= link_to "ログイン", new_session_path %></li>
       <% end %>
       </ul>
     </header>

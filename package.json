@@ -2,7 +2,7 @@
   "name": "manyou_task",
   "private": true,
   "dependencies": {
-    "bootstrap": "4",
+    "bootstrap": "3",
     "jquery": "^3.4.1"
   }
 }
