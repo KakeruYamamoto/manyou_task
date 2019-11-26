@@ -14,6 +14,8 @@ RSpec.describe "タスク管理機能", type: :system do
   @task1 = FactoryBot.create(:task)
   @task2 = FactoryBot.create(:second_task)
   @task3 = FactoryBot.create(:third_task)
+
+
   end
 
   scenario 'タスク一覧のテスト' do
@@ -45,11 +47,40 @@ RSpec.describe "タスク管理機能", type: :system do
 
   end
 
+
   scenario "タスクが作成日時の降順に並んでいるかのテスト" do
 
+    visit tasks_path
+    first(:link, "詳細").click
+    expect(page).to have_text "test_task_03"
+  end
+
+  scenario "終了期限のテスト" do
 
     visit tasks_path
-    expect(page).to have_text /.*test_task_03.*\n.*\ntest_task_01.*/
+    first(:link, "詳細").click
+    expect(page).to have_text "2019/11/24"
   end
+
+  scenario "ステータスのテスト" do
+
+    visit tasks_path
+    first(:link, "詳細").click
+    expect(page).to have_text "完了"
+  end
+
+  scenario "検索ロジックのmodelのテスト" do
+
+    visit tasks_path
+
+    fill_in "search_task_names", with: 'test_task_03'
+    select "完了", from: "task[status]"
+    click_on '検索'
+    expect(page).to have_content 'test_task_03',"完了"
+
+
+
+  end
+
 
 end

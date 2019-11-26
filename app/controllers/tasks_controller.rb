@@ -1,10 +1,25 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
-
+  # PER = 5
   # GET /tasks
   # GET /tasks.json
   def index
-    @tasks = Task.all
+
+    # @tasks = Task.order(created_at: :desc)
+    @tasks = Task.order(created_at: :desc).page(params[:page]).per(5)
+    # binding.pry
+    if params[:sort_deadline]
+      @tasks = Task.order(deadline: :asc).page(params[:page]).per(5)
+      # ASC・・・昇順
+    end
+
+    if params[:sort_priority]
+      @tasks = Task.order(priority: :asc).page(params[:page]).per(5)
+    end
+
+    if params.dig(:task, :search)
+      @tasks = Task.where("task_name LIKE ?", "%#{ params[:task][:task_name] }%").where("status LIKE ?", "%#{ params[:task][:status] }%").page(params[:page]).per(5)
+    end
   end
 
   # GET /tasks/1
@@ -62,6 +77,13 @@ class TasksController < ApplicationController
     end
   end
 
+  # def search
+  #   #Viewのformで取得したパラメータをモデルに渡す
+  #   # binding.pry
+  #   @tasks = Task.search(params[:search])
+  #   @tasks = @tasks.page(params[:page])
+  # end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_task
@@ -70,6 +92,6 @@ class TasksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
-      params.require(:task).permit(:task_name, :task_content)
+      params.require(:task).permit(:task_name, :task_content, :deadline, :status, :priority, :task_label)
     end
 end
