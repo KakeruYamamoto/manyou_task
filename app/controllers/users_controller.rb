@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update,]
-  before_action :render_page
+  before_action :render_page, except: [:new, :create]
+
   def new
     if logged_in?
-      redirect_to user_path(current_user.id), notice: 'ログアウトして下さい'
+      redirect_to tasks_path, notice: 'アカウントを新規作成する場合、ログアウトして下さい'
     else
       @user = User.new
     end
