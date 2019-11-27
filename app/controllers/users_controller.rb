@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update,]
-
+  before_action :render_page
   def new
     if logged_in?
       redirect_to user_path(current_user.id), notice: 'ログアウトして下さい'

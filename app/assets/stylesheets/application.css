@@ -26,6 +26,10 @@ body  .header{
       padding: 25px;
   }
 
+  p #notice {
+    color: black;
+  }
+
 .container{
       margin-top:20px;
       padding-bottom: 100px;
