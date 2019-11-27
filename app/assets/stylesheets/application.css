@@ -1,3 +1,4 @@
+
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
@@ -15,7 +16,19 @@
  *= require_self
  */
 
- body{
+
+.menu {
+  background-color: #DBDBDB;
+  color: white;
+}
+
+.content {
+    text-align:center;
+    padding: 0;
+}
+
+
+body{
      text-align:center;
      height: 900px;
  }
