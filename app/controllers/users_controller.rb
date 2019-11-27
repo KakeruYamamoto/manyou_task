@@ -27,13 +27,13 @@ class UsersController < ApplicationController
 
   def edit
     if @user.id != current_user.id
-      redirect_to new_session_path, notice:  "アカウントが違います。アクセスするにはログインしてください"
+      redirect_to new_session_path, notice:  "アカウントが違います。アクセスするには再ログインしてください"
     end
   end
 
   def show
     if @user.id != current_user.id
-      redirect_to new_session_path, notice:  "アカウントが違います。アクセスするにはログインしてください"
+      redirect_to new_session_path, notice:  "アカウントが違います。アクセスするには再ログインしてください"
     end
   end
 
