@@ -2,7 +2,11 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update,]
 
   def new
-    @user = User.new
+    if logged_in?
+      redirect_to user_path(current_user.id), notice: 'ログアウトして下さい'
+    else
+      @user = User.new
+    end
   end
 
   def create
