@@ -17,19 +17,19 @@ s1 = Date.parse("2015/01/01")
 s2 = Date.parse("2024/01/01")
 s = Random.rand(s1 .. s2)
 
-Task.create(
-  task_name: name,
-  task_content: "ラーメン食べました！#{n}回目",
-  priority: "#{priority.sample}",
-  deadline: "#{s}",
-  status:"#{status.sample}"
-)
+# Task.create(
+#   task_name: name,
+#   task_content: "ラーメン食べました！#{n}回目",
+#   priority: "#{priority.sample}",
+#   deadline: "#{s}",
+#   status:"#{status.sample}"
+# )
 
-# email = Faker::Internet.email
-# password = "password"
-# User.create!(user_name: name,
-#              email: email,
-#              password: password,
-#              password_confirmation: password,
-#              )
+email = Faker::Internet.email
+password = "password"
+User.create!(user_name: name,
+             email: email,
+             password: password,
+             password_confirmation: password,
+             )
 end

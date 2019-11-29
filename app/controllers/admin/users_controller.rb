@@ -1,8 +1,21 @@
 class Admin::UsersController < ApplicationController
-  before_action :admin_user
+  # before_action :admin_user
 
   def index
-    @users = User.all.order("created_at DESC")
+    @users = User.all.order(created_at: :desc).page(params[:page]).per(10)
+
+    if params[:sort_updated]
+      @users = User.order(updated_at: :desc).page(params[:page]).per(10)
+      # ASC・・・昇順
+    end
+
+    if params[:sort_created]
+      @users = User.order(created_at: :desc).page(params[:page]).per(10)
+    end
+
+    if params.dig(:user, :search)
+      @users = User.where("user_name LIKE ?", "%#{ params[:user][:user_name] }%").where("email LIKE ?", "%#{ params[:user][:email] }%").page(params[:page]).per(10)
+    end
   end
 
   def new
@@ -50,7 +63,7 @@ class Admin::UsersController < ApplicationController
   end
 
   private
-  
+
   def admin_user
     redirect_to(root_path) unless current_user.admin?
   end

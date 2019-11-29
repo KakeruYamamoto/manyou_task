@@ -5,14 +5,18 @@
 
   <p>
   <nobr>
-    <%= link_to "終了期限でソートする", tasks_path(sort_deadline: "true") %>
-    <%= link_to "優先順位でソートする", tasks_path(sort_priority: "true") %>
 
-    <%= form_with(model: Task.new,method: :get, url: tasks_path, local: true) do |f| %>
-      <%= f.label :task_name, "タスク名で検索" %>
-      <%= f.text_field :task_name, class: 'form_control' , id: 'search_task_names' %>
-      <%= f.label :status, "状態検索" %>
-      <%= f.select :status, ['未着手','着手中','完了'], id: 'form_control', name: 'select_status',include_blank: true, selected: '' %>
+    <% if params[:sort_updated] %>
+    <%= link_to "登録日順で並び替え", admin_users_path(sort_created: "true") %>
+    <% else %>
+    <%= link_to "更新順で並び替え", admin_users_path(sort_updated: "true") %>
+    <% end %>
+
+    <%= form_with(model: User.new,method: :get, url: admin_users_path, local: true) do |f| %>
+      <%= f.label :user_name, "ユーザ名で検索" %>
+      <%= f.text_field :user_name, class: 'form_control' , id: 'search_user_names' %>
+      <%= f.label :email, "アドレスで検索" %>
+      <%= f.text_field :email, id: 'form_control', name: 'select_status',include_blank: true, selected: '' %>
       <%= f.hidden_field :search, value: 'true' %>
       <%= f.submit '検索'%>
     <% end %>
@@ -28,6 +32,7 @@
         <th>メールアドレス</th>
         <th>パスワード</th>
         <th>登録日時</th>
+        <th>更新日時</th>
         <th colspan="3"></th>
       </tr>
     </thead>
@@ -37,10 +42,10 @@
           <td><%= user.user_name %></td>
           <td><%= user.email %></td>
           <td><%= user.password_digest %></td>
-          <td><%= user.status %></td>
           <td><%= user.created_at %></td>
-          <td><%= link_to '詳細', admin_user %></td>
-          <td><%= link_to '編集', edit_admin_user(user) %></td>
+          <td><%= user.updated_at %></td>
+          <td><%= link_to '詳細', admin_user_path(user.id) %></td>
+          <td><%= link_to '編集', edit_admin_user_path(user) %></td>
           <td><%= link_to '削除', user, method: :delete, data: { confirm: '本当に削除しますか?' } %></td>
         </tr>
       <% end %>

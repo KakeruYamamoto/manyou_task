@@ -30,7 +30,7 @@
 
 body{
      text-align:center;
-     height: 900px;
+     height: auto;
  }
 body  .header{
       font-size:20px;
@@ -76,4 +76,8 @@ body  .header{
 
 tbody {
   text-align:center;
+}
+
+input {
+  color: black;
 }
