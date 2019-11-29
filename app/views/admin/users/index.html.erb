@@ -11,8 +11,7 @@
     <% elsif params[:sort_created] %>
       <%= link_to "更新順で並び替え", admin_users_path(sort_updated: "true") %>
     <% elsif params.dig(:user, :search) %>
-      <%= link_to "登録日順で並び替え", admin_users_path(sort_created: "true") %>
-      <%= link_to "更新順で並び替え", admin_users_path(sort_updated: "true") %>
+      <%= link_to "全てのユーザを表示", admin_users_path(sort_created: "true") %>
     <% end %>
 
     <%= form_with(model: User.new,method: :get, url: admin_users_path, local: true) do |f| %>

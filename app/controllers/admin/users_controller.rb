@@ -6,7 +6,6 @@ class Admin::UsersController < ApplicationController
 
     if params[:sort_updated]
       @users = User.order(updated_at: :desc).page(params[:page]).per(10)
-      # ASC・・・昇順
     end
 
     if params[:sort_created]
