@@ -29,6 +29,10 @@
       </ul>
     </header>
 
+    <% if current_user.admin  == true %>
+    <p>あなたは管理者です</p>
+    <% end %>
+
     <div class="main" class="container">
     <%= yield %>
     </div>

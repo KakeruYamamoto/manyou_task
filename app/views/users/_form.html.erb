@@ -34,9 +34,12 @@
     </div>
 
     <div class="field">
-      <%# <%= form.label :admin %>
-      <%# <%= form.check_box :admin %>
+      <% if current_user.admin == true %>
+        <%= form.label :admin %>
+        <%= form.check_box :admin %>
+      <% end %>
     </div>
+
 
     <div class="actions">
       <%= form.submit %>
