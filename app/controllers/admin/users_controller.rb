@@ -1,5 +1,6 @@
 class Admin::UsersController < ApplicationController
-  # before_action :admin_user
+    before_action :set_user, only: [:show, :edit, :update,]
+  before_action :admin_user
 
   def index
     @users = User.all.order(created_at: :desc).page(params[:page]).per(10)
@@ -38,15 +39,9 @@ class Admin::UsersController < ApplicationController
   end
 
   def edit
-    if @user.id != current_user.id
-      redirect_to new_session_path, notice:  "アカウントが違います。アクセスするには再ログインしてください"
-    end
   end
 
   def show
-    if @user.id != current_user.id
-      redirect_to new_session_path, notice:  "アカウントが違います。アクセスするには再ログインしてください"
-    end
   end
 
   def update
