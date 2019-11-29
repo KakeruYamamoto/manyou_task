@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update,]
+  before_action :set_user, only: [:show, :update, :edit, :destroy]
   before_action :render_page, except: [:new, :create]
 
   def new
@@ -27,14 +27,18 @@ class UsersController < ApplicationController
   end
 
   def edit
-    if @user.id != current_user.id
-      redirect_to new_session_path, notice:  "アカウントが違います。アクセスするには再ログインしてください"
+    if current_user.admin == false
+      if  @user.id == current_user.id
+        redirect_to new_session_path, notice:  "アカウントが違います。アクセスするには再ログインしてください222"
+      end
     end
   end
 
   def show
-    if @user.id != current_user.id
-      redirect_to new_session_path, notice:  "アカウントが違います。アクセスするには再ログインしてください"
+    if current_user.admin == false
+      if @user.id != current_user.id
+        redirect_to new_session_path, notice:  "アカウントが違います。アクセスするには再ログインしてください33333"
+      end
     end
   end
 
@@ -47,6 +51,14 @@ class UsersController < ApplicationController
         format.html { render :edit }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def destroy
+    @user.destroy
+    respond_to do |format|
+      format.html { redirect_to admin_users_path, notice: 'ユーザを削除しました' }
+      format.json { head :no_content }
     end
   end
 
