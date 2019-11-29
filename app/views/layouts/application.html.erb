@@ -14,7 +14,11 @@
     <header class="header" class="container" >
       <ul class="row">
       <% if logged_in? %>
-        <li><%= link_to "ユーザ情報", user_path(current_user.id) %></li>
+        <% if current_user.admin == true %>
+          <li><%= link_to '一般ユーザページ', user_path(current_user.id) %></li>
+        <% else %>
+          <li><%= link_to "ユーザ情報", user_path(current_user.id) %></li>
+        <% end %>
         <li><%= link_to "ログアウト", session_path(current_user.id), method: :delete %></li>
         <li><%= link_to "タスク一覧", tasks_path %></li>
       <% else %>

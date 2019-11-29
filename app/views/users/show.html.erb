@@ -24,4 +24,8 @@
   <% if @user.id == current_user.id %>
   <%= link_to '編集', edit_user_path(@user) %>
   <% end %>
+  <% if  current_user.admin == true %>
+    <%= link_to '管理ページ', admin_users_path %>
+
+  <% end %>
 <% end %>
