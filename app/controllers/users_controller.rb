@@ -18,10 +18,10 @@ class UsersController < ApplicationController
           session[:user_id] = @user.id
           format.html { redirect_to user_path(@user.id), notice: '新しくアカウントを作りました' }
           format.json { render :show, status: :created, location: @user }
+        else
+          format.html { render :new }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
         end
-      else
-        format.html { render :new }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -29,7 +29,7 @@ class UsersController < ApplicationController
   def edit
     if current_user.admin == false
       if  @user.id == current_user.id
-        redirect_to new_session_path, notice:  "アカウントが違います。アクセスするには再ログインしてください222"
+        redirect_to new_session_path, notice:  "アカウントが違います。アクセスするには再ログインしてください"
       end
     end
   end
@@ -37,7 +37,7 @@ class UsersController < ApplicationController
   def show
     if current_user.admin == false
       if @user.id != current_user.id
-        redirect_to new_session_path, notice:  "アカウントが違います。アクセスするには再ログインしてください33333"
+        redirect_to new_session_path, notice:  "アカウントが違います。アクセスするには再ログインしてください"
       end
     end
   end

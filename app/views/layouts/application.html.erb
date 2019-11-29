@@ -15,7 +15,8 @@
       <ul class="row">
       <% if logged_in? %>
         <% if current_user.admin == true %>
-          <li><%= link_to '一般ユーザページ', user_path(current_user.id) %></li>
+        <li><%= link_to '一般ユーザページ', user_path(current_user.id) %></li>
+        <li><%= link_to 'ユーザ作成', new_admin_user_path %></li>
         <% else %>
           <li><%= link_to "ユーザ情報", user_path(current_user.id) %></li>
         <% end %>
