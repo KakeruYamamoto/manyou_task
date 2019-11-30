@@ -15,10 +15,11 @@
   <%= @user.password_digest %>
 </p>
 
+<% if @user.user_name != "admin" %>
 <p>
   <strong>Admin:</strong>
   <%= @user.admin %>
 </p>
-
+<% end %>
 
 <%= link_to '編集', edit_user_path(@user) %>

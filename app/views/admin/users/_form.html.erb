@@ -35,8 +35,10 @@
 
     <div class="field">
       <% if current_user.admin == true %>
-        <%= form.label :admin %>
-        <%= form.check_box :admin %>
+        <% if @user.user_name != "admin" %>
+          <%= form.label :admin %>
+          <%= form.check_box :admin %>
+        <% end %>
       <% end %>
     </div>
 
