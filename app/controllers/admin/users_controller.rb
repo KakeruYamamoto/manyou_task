@@ -42,6 +42,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def show
+    @tasks = @user.tasks.all
   end
 
   def update
