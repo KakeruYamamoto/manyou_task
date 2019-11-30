@@ -27,6 +27,13 @@ class UsersController < ApplicationController
   end
 
   def edit
+    # binding.pry
+    if @user.user_name == "admin"
+      respond_to do |format|
+        format.html { redirect_to admin_users_path, notice: 'このユーザは編集できません！' }
+      end
+    end
+
     if current_user.admin == false
       if  @user.id == current_user.id
         redirect_to new_session_path, notice:  "アカウントが違います。アクセスするには再ログインしてください"
@@ -55,10 +62,16 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user.destroy
-    respond_to do |format|
-      format.html { redirect_to admin_users_path, notice: 'ユーザを削除しました' }
-      format.json { head :no_content }
+    if @user.user_name == "admin"
+      respond_to do |format|
+        format.html { redirect_to admin_users_path, notice: 'このユーザは削除できません' }
+      end
+      else
+      @user.destroy
+      respond_to do |format|
+        format.html { redirect_to admin_users_path, notice: 'ユーザを削除しました' }
+        format.json { head :no_content }
+      end
     end
   end
 
