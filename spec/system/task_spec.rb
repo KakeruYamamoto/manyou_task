@@ -3,7 +3,8 @@ require 'rails_helper'
 RSpec.describe "タスク管理機能", type: :system do
   before do
 
-    @user1 = FactoryBot.create(:user_first)
+    @user1 = FactoryBot.create(:first_user)
+
     @task1 = FactoryBot.create(:task, user_id: @user1.id)
     @task2 = FactoryBot.create(:second_task, user_id: @user1.id)
     @task3 = FactoryBot.create(:third_task, user_id: @user1.id)
@@ -12,7 +13,7 @@ RSpec.describe "タスク管理機能", type: :system do
   before(:each) do
     visit new_session_path
     fill_in 'session[email]', with: @user1.email
-    fill_in 'session[password]', with: @user1.email
+    fill_in 'session[password]', with: @user1.password
     click_on "Log in"
   end
 

@@ -27,7 +27,6 @@ class UsersController < ApplicationController
   end
 
   def edit
-    # binding.pry
     if @user.user_name == "admin"
       respond_to do |format|
         format.html { redirect_to admin_users_path, notice: 'このユーザは編集できません！' }
