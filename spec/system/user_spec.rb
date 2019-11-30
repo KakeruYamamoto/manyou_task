@@ -55,6 +55,5 @@ RSpec.describe "ユーザ管理機能", type: :system do
     first(:link, "削除").click
     page.driver.browser.switch_to.alert.accept
     expect(page).to_not have_text "test_user3"
-    save_and_open_page
   end
 end
