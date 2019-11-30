@@ -29,7 +29,8 @@
       </ul>
     </header>
 
-    <% if current_user.admin  == true %>
+
+    <% if logged_in? && current_user.admin  == true %>
     <p>あなたは管理者です</p>
     <% end %>
 
