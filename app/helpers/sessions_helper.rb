@@ -9,7 +9,7 @@ module SessionsHelper
 
   def render_page
     unless logged_in?
-      render new_session_path, notice: 'ログインして下さい'
+      render new_session_path, notice: '不正アクセスです。ログインして下さい'
     end
   end
 
