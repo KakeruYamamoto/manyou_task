@@ -7,4 +7,14 @@ class User < ApplicationRecord
   before_validation { email.downcase! }
   has_secure_password
 
+  before_destroy :user_should_have_at_least_one
+
+    private
+
+    def user_should_have_at_least_one
+      if User.where(admin:true).count == 1
+      errors.add :base, '少なくとも1つ、ログイン用の認証が必要です'
+      throw :abort
+      end
+    end
 end

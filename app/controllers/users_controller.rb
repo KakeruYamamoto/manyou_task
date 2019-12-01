@@ -12,7 +12,6 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-      # binding.pry
     respond_to do |format|
       if @user.save
         if @user && @user.authenticate(user_params[:password])
@@ -62,7 +61,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    if @user.user_name == "admin"
+    if @user.user_name == "admin" && User.where(admin:true).count == 1
       respond_to do |format|
         format.html { redirect_to admin_users_path, notice: 'このユーザは削除できません' }
       end
@@ -74,6 +73,15 @@ class UsersController < ApplicationController
       end
     end
   end
+
+  def destroy
+    @user.destroy
+    respond_to do |format|
+      format.html { redirect_to admin_users_path, notice: 'ユーザを削除しました' }
+      format.json { head :no_content }
+    end
+  end
+
 
   private
 
