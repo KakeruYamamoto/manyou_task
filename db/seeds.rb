@@ -9,26 +9,26 @@
 
 50.times do |n|
 
-name = Faker::Name.name
-email = Faker::Internet.email
-priority = ["高", "中", "低"]
-status = ['未着手','着手中','完了']
-s1 = Date.parse("2015/01/01")
-s2 = Date.parse("2024/01/01")
-s = Random.rand(s1 .. s2)
-
-
-email = Faker::Internet.email
-password = "password"
-User.create!(user_name: name,
-             email: email,
-             password: password,
-             password_confirmation: password,
-             )
+  name = Faker::Name.name
+  email = Faker::Internet.email
+  password = "password"
+  User.create!(user_name: name,
+               email: email,
+               password: password,
+               password_confirmation: password,
+               )
 end
+
 User.create!(user_name: "admin",
             email: "admin@gmail.com",
             password: "admin@gmail.com",
             password_confirmation: "admin@gmail.com",
             admin: true
             )
+
+5.times do |n|
+
+  job = Faker::Job.title
+  Label.create!(name: job)
+
+end
