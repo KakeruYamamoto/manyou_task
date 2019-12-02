@@ -8,7 +8,6 @@ class Tasks < ActiveRecord::Migration[5.2]
       t.datetime "deadline"
       t.integer "priority"
       t.string "status"
-      t.string "task_label"
       t.references :user, foreign_key: true
 
       t.timestamps
