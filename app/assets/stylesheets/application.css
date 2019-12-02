@@ -81,3 +81,10 @@ tbody {
 input {
   color: black;
 }
+select {
+  color: black;
+}
+
+.labels {
+  background-color: #F8E3E4;
+}

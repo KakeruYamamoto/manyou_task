@@ -38,6 +38,15 @@
   <%= @task.updated_at %>
 </p>
 
+<p>
+  <strong>ラベル:</strong>
+  <span class="labels"><% @task.labels.each do |label| %>
+  <%= label.name %>
+  <% end %></span>
+
+</p>
+
+
 <%= link_to '編集', edit_task_path(@task) %> |
 <% if current_user.admin == true %>
   <%= link_to 'ユーザ一覧へ戻る', admin_user_path %>

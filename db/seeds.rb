@@ -26,9 +26,9 @@ User.create!(user_name: "admin",
             admin: true
             )
 
+num = 0
 5.times do |n|
-
-  job = Faker::Job.title
-  Label.create!(name: job)
+  
+  Label.create!(name: "ラベル#{num += 1}")
 
 end
