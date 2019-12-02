@@ -23,6 +23,10 @@ class TasksController < ApplicationController
     if params.dig(:task, :search)
       @tasks = Task.where("task_name LIKE ?", "%#{ params[:task][:task_name] }%").where("status LIKE ?", "%#{ params[:task][:status] }%").page(params[:page]).per(5)
     end
+
+    if params[:label_id].present?
+       @tasks = @tasks.joins(:labels).where(labels: { id: params[:label_id] }) 
+    end
   end
 
   # GET /tasks/1
@@ -90,7 +94,7 @@ class TasksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
-      params.require(:task).permit(:task_name, :task_content, :deadline, :status, :priority, :task_label)
+      params.require(:task).permit(:task_name, :task_content, :deadline, :status, :priority, { label_ids: [] })
     end
 
 end
