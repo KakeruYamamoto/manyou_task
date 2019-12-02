@@ -8,6 +8,9 @@ RSpec.describe "タスク管理機能", type: :system do
     @task1 = FactoryBot.create(:task, user_id: @user1.id)
     @task2 = FactoryBot.create(:second_task, user_id: @user1.id)
     @task3 = FactoryBot.create(:third_task, user_id: @user1.id)
+    @label1 = FactoryBot.create(:label_one)
+    @label2 = FactoryBot.create(:label_two)
+    @label3 = FactoryBot.create(:label_tree)
   end
 
   before(:each) do
@@ -59,5 +62,29 @@ RSpec.describe "タスク管理機能", type: :system do
     select "完了", from: "task[status]"
     click_on '検索'
     expect(page).to have_content 'test_task_03',"完了"
+  end
+
+# binding.pry
+  scenario "ラベルのテスト" do
+    # binding.pry
+    # visit task_path
+    binding.pry
+
+    first(:link, "編集").click
+    save_and_open_page
+    # binding.pry
+    # check 'ラベル１'
+    # click_on '登録する'
+    # save_and_open_page
+    #task[label_ids][]
+    # first(:link, "詳細").click
+    # expect(page).to have_text "ラベル１"
+  end
+
+  scenario "ラベル検索のテスト" do
+    visit tasks_path
+    select "ラベル１", from: "label_id"
+    click_on 'Search'
+    expect(page).to have_content "ラベル１"
   end
 end
