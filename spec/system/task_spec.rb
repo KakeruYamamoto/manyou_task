@@ -64,21 +64,14 @@ RSpec.describe "タスク管理機能", type: :system do
     expect(page).to have_content 'test_task_03',"完了"
   end
 
-# binding.pry
   scenario "ラベルのテスト" do
-    # binding.pry
-    # visit task_path
-    binding.pry
+
+    visit tasks_path
 
     first(:link, "編集").click
-    save_and_open_page
-    # binding.pry
-    # check 'ラベル１'
-    # click_on '登録する'
-    # save_and_open_page
-    #task[label_ids][]
-    # first(:link, "詳細").click
-    # expect(page).to have_text "ラベル１"
+    check 'task_label_ids_1'
+    click_on '登録する'
+    expect(page).to have_text "ラベル１"
   end
 
   scenario "ラベル検索のテスト" do
