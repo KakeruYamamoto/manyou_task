@@ -69,7 +69,7 @@ RSpec.describe "タスク管理機能", type: :system do
     visit tasks_path
 
     first(:link, "編集").click
-    check 'task_label_ids_1'
+    check 'ラベル１'
     click_on '登録する'
     expect(page).to have_text "ラベル１"
   end
