@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module SessionsHelper
   def current_user
     @current_user ||= User.find_by(id: session[:user_id])
@@ -8,9 +10,6 @@ module SessionsHelper
   end
 
   def render_page
-    unless logged_in?
-      render new_session_path, notice: '不正アクセスです。ログインして下さい'
-    end
+    render new_session_path, notice: '不正アクセスです。ログインして下さい' unless logged_in?
   end
-
 end

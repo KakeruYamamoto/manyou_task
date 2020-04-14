@@ -1,14 +1,15 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
-
-  factory :label_one ,class: Label do
-    name { "ラベル１" }
+  factory :label_one, class: Label do
+    name { 'ラベル１' }
   end
 
-  factory :label_two ,class: Label do
-    name { "ラベル２" }
+  factory :label_two, class: Label do
+    name { 'ラベル２' }
   end
 
-  factory :label_tree ,class: Label do
-    name { "ラベル3" }
+  factory :label_tree, class: Label do
+    name { 'ラベル3' }
   end
 end

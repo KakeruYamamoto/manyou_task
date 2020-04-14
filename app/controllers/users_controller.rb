@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :update, :edit, :destroy]
-  before_action :render_page, except: [:new, :create]
+  before_action :set_user, only: %i[show update edit destroy]
+  before_action :render_page, except: %i[new create]
 
   def new
     if logged_in?
@@ -13,7 +15,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      if @user && @user.authenticate(user_params[:password])
+      if @user&.authenticate(user_params[:password])
         session[:user_id] = @user.id
         redirect_to user_path(@user.id), notice: '新しくアカウントを作りました'
       end
@@ -23,13 +25,13 @@ class UsersController < ApplicationController
   end
 
   def edit
-    if @user.user_name == "admin"
+    if @user.user_name == 'admin'
       redirect_to admin_users_path, notice: 'このユーザは編集できません！'
     end
 
     if current_user.admin == false
-      if  @user.id == current_user.id
-        redirect_to new_session_path, notice:  "アカウントが違います。アクセスするには再ログインしてください"
+      if @user.id == current_user.id
+        redirect_to new_session_path, notice: 'アカウントが違います。アクセスするには再ログインしてください'
       end
     end
   end
@@ -37,7 +39,7 @@ class UsersController < ApplicationController
   def show
     if current_user.admin == false
       if @user.id != current_user.id
-        redirect_to tasks_path, notice:  "アカウントが違います。アクセスするには再ログインしてください"
+        redirect_to tasks_path, notice: 'アカウントが違います。アクセスするには再ログインしてください'
       end
     end
   end
@@ -51,7 +53,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    if @user.user_name == "admin" && User.where(admin:true).count == 1
+    if @user.user_name == 'admin' && User.where(admin: true).count == 1
       redirect_to admin_users_path, notice: 'このユーザは削除できません'
     else
       @user.destroy

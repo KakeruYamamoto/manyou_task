@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class Admin::UsersController < ApplicationController
-  before_action :set_user, only: [:show,:update,:edit,:destroy]
+  before_action :set_user, only: %i[show update edit destroy]
   before_action :admin_user
 
   def index
@@ -14,7 +16,7 @@ class Admin::UsersController < ApplicationController
     end
 
     if params.dig(:user, :search)
-      @users = User.where("user_name LIKE ?", "%#{ params[:user][:user_name] }%").where("email LIKE ?", "%#{ params[:user][:email] }%").page(params[:page]).per(10)
+      @users = User.where('user_name LIKE ?', "%#{params[:user][:user_name]}%").where('email LIKE ?', "%#{params[:user][:email]}%").page(params[:page]).per(10)
     end
   end
 
@@ -26,7 +28,7 @@ class Admin::UsersController < ApplicationController
     @user = User.new(user_params)
     respond_to do |format|
       if @user.save
-        if @user && @user.authenticate(user_params[:password])
+        if @user&.authenticate(user_params[:password])
           session[:user_id] = @user.id
           format.html { redirect_to user_path(@user.id), notice: '新しくアカウントを作りました' }
           format.json { render :show, status: :created, location: @user }
@@ -38,8 +40,7 @@ class Admin::UsersController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def show
     @tasks = @user.tasks.all

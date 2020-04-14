@@ -1,7 +1,7 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
-
-  factory :task , class: Task do
-
+  factory :task, class: Task do
     task_name { 'test_task_01' }
     task_content { 'Factoryで作ったデフォルトのコンテント１' }
   end
@@ -14,7 +14,7 @@ FactoryBot.define do
   factory :third_task, class: Task do
     task_name { 'test_task_03' }
     task_content { 'Factoryで作ったデフォルトのコンテント３' }
-    deadline {'2019/11/24'}
-    status {'完了'}
+    deadline { '2019/11/24' }
+    status { '完了' }
   end
 end
