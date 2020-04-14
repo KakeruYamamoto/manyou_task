@@ -1,38 +1,45 @@
 # README
+# DIC課題(5/6)：株式会社万葉様新入社員教育課題
+<!-- ## Heroku：https://intense-tor-16889.herokuapp.com/ -->
 
-Usersテーブル
+## ホーム画面
+<!-- <img src="/db/fixtures/.png" width="650px"> -->
 
-| カラム名 | データ型 |
-|---------|--------|
-| user_name | string |
-| email | string |
-| password_digest | string |
+## バージョン
+- Ruby 2.6.3
+- Rails 5.2.3
 
+## 機能一覧
 
-Tasksテーブル
+## カタログ設計
+詳細は[こちら]()をご覧ください。
 
-| カラム名 | データ型 |
-|---------|---------|
-| task_name | string |
-| task_content | text |
-| deadline | datetime |
-| priority | integer |
-| status | string |
-| task_label | string |
+## テーブル定義
+詳細は[こちら]()をご覧ください。
 
+## ER図
+<!-- <img src="/db/fixtures/ER1 (1).png" width="650px"> -->
 
-あくまで現段階の予定です
+## 画面遷移図
+<!-- <img src="/db/fixtures/画面遷移図.png" width="650px"> -->
 
-
-
-## Description
-deploy to github
-* git add
-+ git commit -m 'message'
-- git push origin master
+## 画面ワイヤーフレーム
+<!-- <img src="/db/fixtures/ワイヤーフレーム.png" width="650px"> -->
 
 
-deploy to heroku
-* heroku create
-+ heroku push origin master
-- heroku run rails db:migrate
+# 使用技術
+
+
+## How to Start
+
+```
+1. $ git clone  (クローン生成)
+2. $ cd manyou_task https://github.com/KakeruYamamoto/manyou_task.git (作成後、対象のディレクトリから抜けてしまうので、そのディレクトリ移動)
+3. $ bundle install
+4. $ yarn install
+5. $ rails db:create (データベースの生成)
+6. $ rails db:migrate （マイグレーションファイルの実行）
+7.  #config/initializers/locale.rb内の"I18n"の二行をコメントアウト（8.のコマンド終了後、戻す）
+8. $ rails db:seed (シードデータの生成)
+9. $ rails s  
+```

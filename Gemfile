@@ -10,10 +10,6 @@ gem 'faker'
 gem 'kaminari-bootstrap', '~> 3.0.1'
 gem 'bcrypt', '3.1.11'
 
-gem 'pry-rails'
-gem 'better_errors'
-gem 'binding_of_caller'
-
 gem 'rails', '~> 5.2.3'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.11'
@@ -24,8 +20,6 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
-
-
 
 gem 'bootsnap', '>= 1.1.0', require: false
 
@@ -40,6 +34,10 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'launchy'
   gem 'selenium-webdriver'
+
+  gem 'pry-rails'
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 group :development do
@@ -48,10 +46,10 @@ group :development do
 
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+
 end
 
 group :test do
-
   gem 'selenium-webdriver'
   gem 'chromedriver-helper'
   gem 'webdrivers'
