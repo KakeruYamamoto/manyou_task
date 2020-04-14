@@ -12,25 +12,19 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    respond_to do |format|
-      if @user.save
-        if @user && @user.authenticate(user_params[:password])
-          session[:user_id] = @user.id
-          format.html { redirect_to user_path(@user.id), notice: '新しくアカウントを作りました' }
-          format.json { render :show, status: :created, location: @user }
-        end
-      else
-        format.html { render :new }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+    if @user.save
+      if @user && @user.authenticate(user_params[:password])
+        session[:user_id] = @user.id
+        redirect_to user_path(@user.id), notice: '新しくアカウントを作りました'
       end
+    else
+      render :new
     end
   end
 
   def edit
     if @user.user_name == "admin"
-      respond_to do |format|
-        format.html { redirect_to admin_users_path, notice: 'このユーザは編集できません！' }
-      end
+      redirect_to admin_users_path, notice: 'このユーザは編集できません！'
     end
 
     if current_user.admin == false
@@ -49,39 +43,23 @@ class UsersController < ApplicationController
   end
 
   def update
-    respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to @user, notice: '更新しました' }
-        format.json { render :show, status: :ok, location: @user }
-      else
-        format.html { render :edit }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+    if @user.update(user_params)
+      redirect_to @user, notice: '更新しました'
+    else
+      render :edit
     end
   end
 
   def destroy
     if @user.user_name == "admin" && User.where(admin:true).count == 1
-      respond_to do |format|
-        format.html { redirect_to admin_users_path, notice: 'このユーザは削除できません' }
-      end
-      else
+      redirect_to admin_users_path, notice: 'このユーザは削除できません'
+    else
       @user.destroy
-      respond_to do |format|
-        format.html { redirect_to admin_users_path, notice: 'ユーザを削除しました' }
-        format.json { head :no_content }
-      end
+      redirect_to admin_users_path, notice: 'ユーザを削除しました'
     end
-  end
-
-  def destroy
     @user.destroy
-    respond_to do |format|
-      format.html { redirect_to admin_users_path, notice: 'ユーザを削除しました' }
-      format.json { head :no_content }
-    end
+    redirect_to admin_users_path, notice: 'ユーザを削除しました'
   end
-
 
   private
 
