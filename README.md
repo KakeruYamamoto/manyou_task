@@ -1,9 +1,9 @@
 # README
 # DIC課題(5/6)：株式会社万葉様新入社員教育課題
-<!-- ## Heroku：https://intense-tor-16889.herokuapp.com/ -->
+## Heroku：https://intense-tor-16889.herokuapp.com/
 
 ## ホーム画面
-<!-- <img src="/db/fixtures/.png" width="650px"> -->
+<img src="db/fixtures/ホーム画面.png" width="650px">
 
 ## バージョン
 - Ruby 2.6.3
@@ -11,24 +11,19 @@
 
 ## 機能一覧
 
-## カタログ設計
-詳細は[こちら]()をご覧ください。
-
-## テーブル定義
-詳細は[こちら]()をご覧ください。
+- [ ] タスク投稿機能
+  - [ ] 投稿CRUD機能（一覧、作成、詳細、更新、削除）
+  - [ ] タスク検索機能（ラベル、状態、タスク名）
+  - [ ] タスク並べ替え機能（終了期限、優先順位）
+- [ ] ユーザー機能
+  - [ ] 投稿CRUD機能（一覧、作成、詳細、更新、削除）
+- [ ] ユーザ管理機能
+    - [ ] ユーザのCURD機能（作成、詳細、更新、削除）
+- [ ] ログイン機能
+- [ ] ゲストログイン機能
 
 ## ER図
-<!-- <img src="/db/fixtures/ER1 (1).png" width="650px"> -->
-
-## 画面遷移図
-<!-- <img src="/db/fixtures/画面遷移図.png" width="650px"> -->
-
-## 画面ワイヤーフレーム
-<!-- <img src="/db/fixtures/ワイヤーフレーム.png" width="650px"> -->
-
-
-# 使用技術
-
+<img src="db/fixtures/ER1 (1).png" width="650px">
 
 ## How to Start
 
