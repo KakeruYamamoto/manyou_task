@@ -22,13 +22,13 @@
               <span class="badge badge-info text-light mb-1"><%= label.name %></span>
             <% end %>
           </td>
-          <td><%=task.deadline.strftime(("%Y/%m/%d %H:%M"))%></td>
+          <td><%=task.deadline.strftime(("%Y/%m/%d"))%></td>
           <td><%=task.status%></td>
           <td><%=task.priority%></td>
           <td class="text-center">
             <%=link_to "詳細", task_path(task), class:"btn btn-info mb-1" %>
             <%=link_to "編集", edit_task_path(task), class:"btn btn-info mb-1" %>
-            <%=link_to "削除", task_path(task), method: :delete, data: {confirm: t('view.delete_confirm')}, class:"btn btn-danger mb-1"%>
+            <%=link_to "削除", task_path(task), method: :delete, data: { confirm: "本当に削除しますか？" }, class:"btn btn-danger mb-1" %>
           </td>
         </tr>
       </tbody>
