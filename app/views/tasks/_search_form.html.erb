@@ -1,5 +1,5 @@
 <%= form_with(model: Task.new,method: :get, url: tasks_path, local: true, class: 'form-inline my-2 my-lg-0 ml-auto') do |f| %>
-  <%= f.label :status, "状態検索" %>
+  <%= f.label :status, "状態検索", class: "status_label" %>
   &nbsp;
   <%= f.select :status, ['未着手','着手中','完了'], id: 'form_control', name: 'select_status',include_blank: true, selected: '' %>
   <%= f.hidden_field :search, value: 'true' %>
