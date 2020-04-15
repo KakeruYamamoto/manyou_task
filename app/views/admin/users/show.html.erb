@@ -1,10 +1,15 @@
 <div class="container-fluid text-center">
+  <br>
+  <h2>ユーザページ（ADMIN）</h2>
   <div class="card w-50 task_card">
     <p id="notice"><%= notice %></p>
 
     <h2>
       <%= @user.user_name %>さんのタスク
     </h2>
+    <% if current_user.id == @user.id %>
+    <p>あなたのページです</p>
+    <% end %>
     <hr>
     <p>
       <strong>タスク合計：</strong>
@@ -25,7 +30,7 @@
       <%= @user.tasks.where(status: "完了").count %>
     </p>
     <p>
-      <%= link_to 'プロフィール編集', edit_user_path(@user), class:"btn btn-primary mb-1" %>
+      <%= link_to 'プロフィール編集', edit_admin_user_path(@user), class:"btn btn-primary mb-1" %>
     </p>
   </div>
 
@@ -69,8 +74,9 @@
           </tbody>
         <% end %>
       </table>
-      <%= link_to 'タスクを追加', new_task_path ,class: "btn btn-primary btn-xs" if current_user.id == @tasks[1].user_id %>
+      <p><%= link_to 'タスクを追加', new_task_path ,class: "btn btn-primary btn-xs" if current_user.id == @tasks[1].user_id %></p>
     <% end %>
+    <p><%= link_to "戻る", admin_users_path %></p>
   </div>
 
 </div>

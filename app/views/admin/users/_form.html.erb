@@ -1,39 +1,38 @@
-<%= form_with(model: user, local: true) do |form| %>
-  <% if user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+<div class="container-fluid text-center">
+  <%= form_with(model: user, local: true) do |form| %>
+    <% if user.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(user.errors.count, "件のエラー") %> により、このタスクを保存できませんでした</h2>
 
-      <ul>
-      <% user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+        <ul>
+        <% user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <br>
+    <div class="row justify-content-center">
+      <%= form.label :user_name, class: "sr-only" %>
+      <%= form.text_field :user_name, class: "form-control task_new",id: "inputUser",placeholder: "お名前" %>
     </div>
-  <% end %>
-
-  <div class="row">
-  <%= form_with(model: @user, local: true) do |f| %>
-    <div class="field">
-      <%= f.label :user_name %>
-      <%= f.text_field :user_name %>
+    <br>
+    <div class="row justify-content-center">
+      <%= form.label :email, class: "sr-only" %>
+      <%= form.text_field :email, autofocus: true, autocomplete: "email", autocomplete: "email" ,class: "form-control task_new",id: "inputUser",placeholder: "メールアドレス" %>
     </div>
-
-    <div class="field">
-      <%= f.label :email %>
-      <%= f.text_field :email %>
+    <br>
+    <div class="row justify-content-center">
+      <%= form.label :password, class: "sr-only" %>
+      <%= form.password_field :password, autocomplete: "new-password" ,class: "form-control task_new",id: "inputUser",placeholder: "パスワード (６文字以上) " %>
     </div>
-
-    <div class="field">
-      <%= f.label :password %>
-      <%= f.password_field :password %>
+    <br>
+    <div class="row justify-content-center">
+      <%= form.label :password_confirmation, class: "sr-only" %>
+      <%= form.password_field :password_confirmation, autocomplete: "new-password" ,class: "form-control task_new",id: "inputUser",placeholder: "確認用パスワード" %>
     </div>
-
-    <div class="field">
-      <%= f.label :password_confirmation %>
-      <%= f.password_field :password_confirmation %>
-    </div>
-
-    <div class="field">
+    <br>
+    <div class="row justify-content-center">
       <% if current_user.admin == true %>
         <% unless @user.user_name == "admin" %>
           <%= form.label :admin %>
@@ -41,11 +40,9 @@
         <% end %>
       <% end %>
     </div>
-
-
-    <div class="actions">
-      <%= form.submit %>
+    <br>
+    <div class="row justify-content-center col-xs-3">
+      <%= form.submit "登録" ,class: "btn btn-lg btn-primary " %>
     </div>
   <% end %>
-  </div>
-<% end %>
+</div>
