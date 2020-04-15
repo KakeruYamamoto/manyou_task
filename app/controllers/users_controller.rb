@@ -30,7 +30,7 @@ class UsersController < ApplicationController
     end
 
     if current_user.admin == false
-      if @user.id == current_user.id
+      unless @user.id == current_user.id
         redirect_to new_session_path, notice: 'アカウントが違います。アクセスするには再ログインしてください'
       end
     end
