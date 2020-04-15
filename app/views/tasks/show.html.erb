@@ -1,55 +1,57 @@
-<p id="notice"><%= notice %></p>
+<div class="container-fluid text-center">
+  <div class="card w-50 task_card">
 
-<p>
-  <strong>ID:</strong>
-  <%= @task.id %>
-</p>
+    <p id="notice"><%= notice %></p>
+    <% if current_user.admin? && current_user.tasks.ids.any?(@task.id) %>
+      <p>あなたのタスクです</p>
+    <% else %>
+      <p><%= @task.user.user_name %>さんのタスク</p>
+    <% end %>
+    <h2>タスク名:
+      <%= @task.task_name %>
+    </h2>
+    <hr>
+    <p>
+      <strong>タスクの内容:</strong>
+      <%= @task.task_content %>
+    </p>
 
-<p>
-  <strong>タスク名:</strong>
-  <%= @task.task_name %>
-</p>
+    <p>
+      <strong>優先順位:</strong>
+      <%= @task.priority %>
+    </p>
 
-<p>
-  <strong>タスクの内容:</strong>
-  <%= @task.task_content %>
-</p>
+    <p>
+      <strong>ステータス:</strong>
+      <%= @task.status %>
+    </p>
+    <p>
+      <strong>終了期限:</strong>
+      <%= @task.deadline %>
+    </p>
+    <p>
+      <strong>登録日時:</strong>
+      <%= @task.created_at %>
+    </p>
 
-<p>
-  <strong>優先順位:</strong>
-  <%= @task.priority %>
-</p>
+    <p>
+      <strong>更新日時:</strong>
+      <%= @task.updated_at %>
+    </p>
 
-<p>
-  <strong>ステータス:</strong>
-  <%= @task.status %>
-</p>
-<p>
-  <strong>終了期限:</strong>
-  <%= @task.deadline %>
-</p>
-<p>
-  <strong>登録日時:</strong>
-  <%= @task.created_at %>
-</p>
+    <p>
+      <strong>ラベル:</strong>
+      <span class="labels"><% @task.labels.each do |label| %>
+      <%= label.name %>
+      <% end %></span>
 
-<p>
-  <strong>更新日時:</strong>
-  <%= @task.updated_at %>
-</p>
+    </p>
 
-<p>
-  <strong>ラベル:</strong>
-  <span class="labels"><% @task.labels.each do |label| %>
-  <%= label.name %>
-  <% end %></span>
-
-</p>
-
-
-<%= link_to '編集', edit_task_path(@task) %> |
-<% if current_user.admin == true %>
-  <%= link_to 'ユーザ一覧へ戻る', admin_user_path %>
-<% else %>
-  <%= link_to '戻る', tasks_path %>
-<% end %>
+    <p>
+      <%= link_to '編集', edit_task_path(@task), class:"btn btn-info mb-1" %>
+    </p>
+    <p>
+      <%= link_to '戻る', :back %>
+    </p>
+  </div>
+</div>
