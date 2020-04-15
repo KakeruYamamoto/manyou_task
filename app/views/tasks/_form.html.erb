@@ -1,47 +1,50 @@
-<%= form_with(model: task, local: true) do |form| %>
-  <% if task.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(task.errors.count, "件のエラー") %> により、このタスクを保存できませんでした</h2>
+<div class="container-fluid text-center">
 
-      <ul>
-      <% task.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+  <%= form_with(model: task, local: true) do |form| %>
+    <% if task.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(task.errors.count, "件のエラー") %> により、このタスクを保存できませんでした</h2>
+
+        <ul>
+        <% task.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <br>
+    <div class="row justify-content-center">
+      <%= form.label :task_name,class: "sr-only" %>
+      <%= form.text_field :task_name,class: "form-control task_new",id: "inputUser",placeholder: "タスク名" %>
     </div>
+    <br>
+    <div class="row justify-content-center">
+      <%= form.label :task_content,class: "sr-only" %>
+      <%= form.text_area :task_content, autocomplete: "content" ,class: "form-control task_content",rows: "5",placeholder: "タスク詳細を記述してください。" %>
+    </div>
+    <br>
+    <div class="row justify-content-center">
+      <%= form.label :priority, "優先順位：" %>
+      <%= form.select :priority, [ '高' , '中', '低'] %>
+    </div>
+    <br>
+    <div class="row justify-content-center">
+      <%= form.label :deadline ,"終了期限："  %>
+      <%= form.date_field :deadline %>
+    </div>
+    <br>
+    <div class="row justify-content-center">
+      <%= form.label :status, "ステータス：" %>
+      <%= form.select :status, ['未着手','着手中','完了'] %>
+    </div>
+    <br>
+    <div class="row justify-content-center">
+      <p><%= form.collection_check_boxes(:label_ids, Label.all, :id, :name) %></p>
+    </div>
+    <br>
+    <div class="actions">
+      <%= form.submit '登録する',class: "btn btn-info btn-xs" %>
+    </div>
+    <br>
   <% end %>
-
-  <div class="field">
-    <%= form.label :task_name, "タスク名" %>
-    <%= form.text_field :task_name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :task_content, "タスク詳細" %>
-    <%= form.text_area :task_content %>
-  </div>
-
-  <div class="field">
-    <%= form.label :priority, "優先順位" %>
-    <%= form.select :priority, [ '高' , '中', '低'] %>
-  </div>
-
-  <div class="field">
-    <%= form.label :deadline, "終了期限" %>
-    <%= form.date_field :deadline %>
-  </div>
-
-  <div class="field">
-    <%= form.label :status, "ステータス" %>
-    <%= form.select :status, ['未着手','着手中','完了'] %>
-  </div>
-
-  <div class="field">
-    <%= form.collection_check_boxes(:label_ids, Label.all, :id, :name) %>
-  </div>
-
-
-  <div class="actions">
-    <%= form.submit '登録する'%>
-  </div>
-<% end %>
+</div>
