@@ -10,49 +10,50 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <% if current_user.admin == true %>
-        <%= link_to "TASK APP(ADMIN)", tasks_path, class: "navbar-brand" %>
-      <% else %>
-        <%= link_to "TASK APP", tasks_path, class: "navbar-brand" %>
-      <% end %>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav">
-          <% if logged_in? %>
-            <li class="nav-item active">
-              <%= link_to "マイページ", user_path(current_user.id),class: "nav-link" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to 'ユーザ管理ページ', admin_users_path ,class: "nav-link" if current_user.admin == true %>
-            </li>
-            <li class="nav-item">
-              <%= link_to 'タスク作成', new_task_path ,class: "nav-link" %>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                並び替える
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <%= link_to "終了期限でソートする", tasks_path(sort_deadline: "true"),class: "dropdown-item" %>
-                <%= link_to "優先順位でソートする", tasks_path(sort_priority: "true"),class: "dropdown-item" %>
-              </div>
-            </li>
-          <% else %>
-            <li class="nav-item">
-              <%= link_to "ユーザ登録", new_user_path ,class: "nav-link" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "ログイン", new_session_path ,class: "nav-link" %>
-            </li>
-          <% end %>
-        </ul>
-        <%= render 'tasks/search_form' %>
-      </div>
-    </nav>
-    <%= yield %>
-
+    <div class="container-fluid" id="wrapper">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <% if current_user.admin == true %>
+          <%= link_to "TASK APP(ADMIN)", tasks_path, class: "navbar-brand" %>
+        <% else %>
+          <%= link_to "TASK APP", tasks_path, class: "navbar-brand" %>
+        <% end %>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <% if logged_in? %>
+              <li class="nav-item active">
+                <%= link_to "マイページ", user_path(current_user.id),class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'ユーザ管理ページ', admin_users_path ,class: "nav-link" if current_user.admin == true %>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'タスク作成', new_task_path ,class: "nav-link" %>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  並び替える
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <%= link_to "終了期限でソートする", tasks_path(sort_deadline: "true"),class: "dropdown-item" %>
+                  <%= link_to "優先順位でソートする", tasks_path(sort_priority: "true"),class: "dropdown-item" %>
+                </div>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <%= link_to "ユーザ登録", new_user_path ,class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "ログイン", new_session_path ,class: "nav-link" %>
+              </li>
+            <% end %>
+          </ul>
+          <%= render 'tasks/search_form' %>
+        </div>
+      </nav>
+      <%= yield %>
+    </div>
   </body>
 </html>
