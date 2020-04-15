@@ -4,5 +4,6 @@
 
   <%= render 'form', user: @user %>
   <br>
-  <%= link_to '戻る', :back %>
+  <%= link_to '戻る', :back if logged_in? %>
+  <p><%= link_to 'ログイン画面', new_session_path,class: "btn btn-outline-secondary btn-xs" unless logged_in? %></p>
 </div>

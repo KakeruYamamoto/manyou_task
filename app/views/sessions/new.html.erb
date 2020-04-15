@@ -1,15 +1,28 @@
-<h1 class="text-center">ログイン</h1>
-<%= form_with(scope: :session, url: sessions_path, local: true) do |f| %>
+<body class="text-center ">
+  <div class="container">
+    <%= form_with(scope: :session, url: sessions_path, local: true) do |f| %>
+      <br>
+      <h1 class="h3 mb-3 font-weight-normal">ログイン</h1>
+      <% flash.each do |key, value| %>
+        <%= content_tag(:div, value, class: "#{key}") %>
+      <% end %>
 
-  <% flash.each do |key, value| %>
-    <%= content_tag(:div, value, class: "#{key}") %>
-  <% end %>
-
-  <%= f.label :email, "メールアドレス" %>
-  <%= f.email_field :email %>
-
-  <%= f.label :password, "パスワード" %>
-  <%= f.password_field :password %>
-
-  <%= f.submit "Log in" %>
-<% end %>
+      <div class="row justify-content-center">
+        <%= f.label :email ,class: "sr-only" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email" ,class: "form-control task_new",id: "inputUser",placeholder: "Emailアドレス" %>
+      </div>
+      <br>
+      <div class="row justify-content-center">
+        <%= f.label :password ,class: "sr-only" %>
+        <%= f.password_field :password, autocomplete: "current-password",class: "form-control task_new",id: "inputUser", placeholder: "パスワード" %>
+      </div>
+      <br>
+      <div class="row justify-content-center col-xs-3" >
+        <%= f.submit "サインイン" ,class: "btn btn-lg btn-primary "%>
+      </div>
+      <br>
+      <br>
+    <% end %>
+    <p><%= link_to 'ユーザ登録', new_user_path,class: "btn btn-outline-secondary btn-xs" %></p>
+  </div>
+</body>
