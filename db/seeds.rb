@@ -24,7 +24,9 @@ User.create!(user_name: 'admin',
              password_confirmation: 'admin@gmail.com',
              admin: true)
 
-num = 0
-5.times do |_n|
-  Label.create!(name: "ラベル#{num += 1}")
-end
+Label.create!(name: 'プライベート')
+Label.create!(name: '仕事')
+Label.create!(name: '買い物')
+Label.create!(name: '勉強')
+Label.create!(name: '雑事')
+Label.create!(name: '遊び')

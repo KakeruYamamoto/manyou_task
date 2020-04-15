@@ -25,10 +25,11 @@
       <%= @user.tasks.where(status: "完了").count %>
     </p>
 
-    <p>
-      <%= link_to 'プロフィール編集', edit_user_path(@user), class:"btn btn-primary mb-1" if logged_in? && @user.id == current_user.id %>
-    </p>
-
+    <% if logged_in? && @user.id == current_user.id %>
+      <p>
+        <%= link_to 'プロフィール編集', edit_user_path(@user), class:"btn btn-primary mb-1"  unless @user.user_name == 'admin'  || @user.user_name == "ゲストユーザー" %>
+      </p>
+    <% end %>
     <p>
       <%= link_to '戻る', tasks_path %>
     </p>

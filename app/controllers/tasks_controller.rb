@@ -8,15 +8,15 @@ class TasksController < ApplicationController
     @tasks = current_user.tasks.order(created_at: :desc).page(params[:page]).per(5)
 
     if params[:sort_deadline]
-      @tasks = Task.order(deadline: :asc).page(params[:page]).per(5)
+      @tasks = current_user.tasks.order(deadline: :asc).page(params[:page]).per(5)
     end
 
     if params[:sort_priority]
-      @tasks = Task.order(priority: :asc).page(params[:page]).per(5)
+      @tasks = current_user.tasks.order(priority: :asc).page(params[:page]).per(5)
     end
 
     if params.dig(:task, :search)
-      @tasks = Task.where('task_name LIKE ?', "%#{params[:task][:task_name]}%").where('status LIKE ?', "%#{params[:task][:status]}%").page(params[:page]).per(5)
+      @tasks = current_user.tasks.where('task_name LIKE ?', "%#{params[:task][:task_name]}%").where('status LIKE ?', "%#{params[:task][:status]}%").page(params[:page]).per(5)
     end
 
     if params[:label_id].present?
