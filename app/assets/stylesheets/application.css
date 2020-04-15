@@ -36,3 +36,7 @@
  ul{
      padding:0;
  }
+
+.paginate {
+  margin: 0 auto;
+}
