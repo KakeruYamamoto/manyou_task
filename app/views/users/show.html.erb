@@ -1,31 +1,36 @@
-<p id="notice"><%= notice %></p>
+<div class="container-fluid text-center">
+  <div class="card w-50 task_card">
+    <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>User name:</strong>
-  <%= @user.user_name %>
-</p>
+    <h2>
+      <%= @user.user_name %>さんのタスク
+    </h2>
+    <hr>
+    <p>
+      <strong>タスク合計：</strong>
+      <%= @user.tasks.count%>
+    </p>
 
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
+    <p>
+      <strong>未着手:</strong>
+      <%= @user.tasks.where(status: "未着手").count %>
+    </p>
 
-<p>
-  <strong>Password:</strong>
-  <%= @user.password_digest %>
-</p>
+    <p>
+      <strong>着手中:</strong>
+      <%= @user.tasks.where(status: "着手中").count %>
+    </p>
+    <p>
+      <strong>完了:</strong>
+      <%= @user.tasks.where(status: "完了").count %>
+    </p>
 
-<p>
-  <strong>Admin:</strong>
-  <%= @user.admin %>
-</p>
+    <p>
+      <%= link_to 'プロフィール編集', edit_user_path(@user), class:"btn btn-primary mb-1" if logged_in? && @user.id == current_user.id %>
+    </p>
 
-<% if  logged_in? %>
-  <% if @user.id == current_user.id %>
-  <%= link_to '編集', edit_user_path(@user) %>
-  <% end %>
-  <% if  current_user.admin == true %>
-    <%= link_to '管理ページ', admin_users_path %>
-
-  <% end %>
-<% end %>
+    <p>
+      <%= link_to '戻る', tasks_path %>
+    </p>
+  </div>
+</div>
