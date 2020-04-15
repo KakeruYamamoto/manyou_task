@@ -1,15 +1,3 @@
-<li class="nav-item dropdown">
-  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    ラベルで検索
-  </a>
-  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-    <%= form_with(url: tasks_path, method: :get, local: true, class: 'form-inline my-2 my-lg-0 ml-auto') do |form| %>
-      <%= form.label :name, "ラベルで検索" %>
-      <%= form.select("label_id", Label.pluck(:name, :id), { include_blank: true }) %>
-      <%= form.submit 'Search', name: nil, class: "btn btn-outline-info btn-sm" %>
-    <% end %>
-  </div>
-</li>
 <%= form_with(model: Task.new,method: :get, url: tasks_path, local: true, class: 'form-inline my-2 my-lg-0 ml-auto') do |f| %>
   <%= f.label :status, "状態検索" %>
   &nbsp;

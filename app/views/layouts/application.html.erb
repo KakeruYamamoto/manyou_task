@@ -12,7 +12,7 @@
   <body>
     <div class="container-fluid" id="wrapper">
       <nav class="navbar navbar-expand-md navbar-dark bg-primary">
-        <% if current_user.admin == true %>
+        <% if logged_in? && current_user.admin == true %>
           <%= link_to "TASK APP(ADMIN)", tasks_path, class: "navbar-brand" %>
         <% else %>
           <%= link_to "TASK APP", tasks_path, class: "navbar-brand" %>
@@ -40,6 +40,21 @@
                   <%= link_to "終了期限でソートする", tasks_path(sort_deadline: "true"),class: "dropdown-item" %>
                   <%= link_to "優先順位でソートする", tasks_path(sort_priority: "true"),class: "dropdown-item" %>
                 </div>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  ラベルで検索
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <%= form_with(url: tasks_path, method: :get, local: true, class: 'form-inline my-2 my-lg-0 ml-auto') do |form| %>
+                    <%= form.label :name, "ラベルで検索" %>
+                    <%= form.select("label_id", Label.pluck(:name, :id), { include_blank: true }) %>
+                    <%= form.submit 'Search', name: nil, class: "btn btn-outline-info btn-sm" %>
+                  <% end %>
+                </div>
+              </li>
+              <li class="nav-item" >
+                <%= link_to "ログアウト", session_path(current_user.id), method: :delete, data: { confirm: 'ログアウトしますか？' },class: "nav-link"  %>
               </li>
             <% else %>
               <li class="nav-item">
