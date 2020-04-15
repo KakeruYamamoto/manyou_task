@@ -28,5 +28,4 @@ class SessionsController < ApplicationController
     session[:user_id] = user.id
     redirect_to tasks_path, notice: 'ゲストユーザーとしてログインしました。'
   end
-
 end
