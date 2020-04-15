@@ -23,6 +23,7 @@
       <br>
       <br>
     <% end %>
+    <p><%= link_to 'ゲストログイン（閲覧用）', guest_sign_in_sessions_path, method: :post ,class: "btn btn-outline-success" unless logged_in? %></p>
     <p><%= link_to 'ユーザ登録', new_user_path,class: "btn btn-outline-secondary btn-xs" %></p>
   </div>
 </body>
