@@ -1,56 +1,76 @@
-<p id="notice"><%= notice %></p>
+<div class="container-fluid text-center">
+  <div class="card w-50 task_card">
+    <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>User name:</strong>
-  <%= @user.user_name %>
-</p>
+    <h2>
+      <%= @user.user_name %>さんのタスク
+    </h2>
+    <hr>
+    <p>
+      <strong>タスク合計：</strong>
+      <%= @user.tasks.count%>
+    </p>
 
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
+    <p>
+      <strong>未着手:</strong>
+      <%= @user.tasks.where(status: "未着手").count %>
+    </p>
 
-<p>
-  <strong>Password:</strong>
-  <%= @user.password_digest %>
-</p>
+    <p>
+      <strong>着手中:</strong>
+      <%= @user.tasks.where(status: "着手中").count %>
+    </p>
+    <p>
+      <strong>完了:</strong>
+      <%= @user.tasks.where(status: "完了").count %>
+    </p>
+    <p>
+      <%= link_to 'プロフィール編集', edit_user_path(@user), class:"btn btn-primary mb-1" %>
+    </p>
+  </div>
 
-<% if @user.user_name != "admin" %>
-<p>
-  <strong>Admin:</strong>
-  <%= @user.admin %>
-</p>
-<% end %>
 
-<%= link_to '編集', edit_user_path(@user) %>
+  <div class="container-fluid">
+    <p id="notice"><%= notice %></p>
+    <% if @tasks.empty? %>
+    <p>タスクはありません。</p>
+    <% else %>
+      <table class="table my-2">
+        <thead class="text-center">
+          <tr>
+            <th scope="col">タスク名</th>
+            <th scope="col">タスクの内容</th>
+            <th scope="col">ラベル</th>
+            <th scope="col">終了期限</th>
+            <th scope="col">ステータス</th>
+            <th scope="col">優先順位</th>
+            <th scope="col">タスク管理</th>
+          </tr>
+        </thead>
+        <% @tasks.each do |task| %>
+          <tbody>
+            <tr>
+              <td class="text-center task_list"><%=task.task_name%></td>
+              <td><%=task.task_content%></td>
+              <td>
+                <% task.labels.each do |label| %>
+                  <span class="badge badge-primary text-light mb-1"><%= label.name %></span>
+                <% end %>
+              </td>
+              <td><%=task.deadline.strftime(("%Y/%m/%d"))%></td>
+              <td><%=task.status%></td>
+              <td><%=task.priority%></td>
+              <td class="text-center">
+                <%=link_to "詳細", task_path(task), class:"btn btn-primary mb-1" %>
+                <%=link_to "編集", edit_task_path(task), class:"btn btn-primary mb-1" %>
+                <%=link_to "削除", task_path(task), method: :delete, data: { confirm: "本当に削除しますか？" }, class:"btn btn-danger mb-1" %>
+              </td>
+            </tr>
+          </tbody>
+        <% end %>
+      </table>
+      <%= link_to 'タスクを追加', new_task_path ,class: "btn btn-primary btn-xs" if current_user.id == @tasks[1].user_id %>
+    <% end %>
+  </div>
 
-<div class="content" class="container">
-  <table>
-    <thead>
-      <tr>
-        <th>タスク名</th>
-        <th>タスクの内容</th>
-        <th>優先順位</th>
-        <th>ステータス</th>
-        <th>終了期限</th>
-        <th>登録日時</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @tasks.each do |task| %>
-        <tr>
-          <td><%= task.task_name %></td>
-          <td><%= task.task_content %></td>
-          <td><%= task.priority %></td>
-          <td><%= task.status %></td>
-          <td><%= task.deadline %></td>
-          <td><%= task.created_at %></td>
-          <td><%= link_to '詳細', task %></td>
-          <td><%= link_to '編集', edit_task_path(task) %></td>
-          <td><%= link_to '削除', task, method: :delete, data: { confirm: '本当に削除しますか?' } %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
 </div>
