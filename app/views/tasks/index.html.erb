@@ -19,22 +19,22 @@
           <td><%=task.task_content%></td>
           <td>
             <% task.labels.each do |label| %>
-              <span class="badge badge-info text-light mb-1"><%= label.name %></span>
+              <span class="badge badge-primary text-light mb-1"><%= label.name %></span>
             <% end %>
           </td>
           <td><%=task.deadline.strftime(("%Y/%m/%d"))%></td>
           <td><%=task.status%></td>
           <td><%=task.priority%></td>
           <td class="text-center">
-            <%=link_to "詳細", task_path(task), class:"btn btn-info mb-1" %>
-            <%=link_to "編集", edit_task_path(task), class:"btn btn-info mb-1" %>
+            <%=link_to "詳細", task_path(task), class:"btn btn-primary mb-1" %>
+            <%=link_to "編集", edit_task_path(task), class:"btn btn-primary mb-1" %>
             <%=link_to "削除", task_path(task), method: :delete, data: { confirm: "本当に削除しますか？" }, class:"btn btn-danger mb-1" %>
           </td>
         </tr>
       </tbody>
     <% end %>
   </table>
-  <%= link_to 'タスクを追加', new_task_path ,class: "btn btn-info btn-xs"%>
+  <%= link_to 'タスクを追加', new_task_path ,class: "btn btn-primary btn-xs"%>
   <div class="paginate" id="task_list" >
     <%= paginate @tasks %>
   </div>
