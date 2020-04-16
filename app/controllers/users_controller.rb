@@ -53,14 +53,12 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    if @user.user_name == 'admin' && User.where(admin: true).count == 1
+    if @user.user_name == 'admin'
       redirect_to admin_users_path, notice: 'このユーザは削除できません'
     else
       @user.destroy
       redirect_to admin_users_path, notice: 'ユーザを削除しました'
     end
-    @user.destroy
-    redirect_to admin_users_path, notice: 'ユーザを削除しました'
   end
 
   private

@@ -17,7 +17,7 @@ RSpec.describe 'ユーザ管理機能', type: :system do
     visit new_session_path
     fill_in 'session[email]', with: @user1.email
     fill_in 'session[password]', with: @user1.password
-    click_on 'Log in'
+    click_on 'サインイン'
   end
 
   scenario 'ユーザ一覧のテスト' do
@@ -28,25 +28,27 @@ RSpec.describe 'ユーザ管理機能', type: :system do
   scenario 'ユーザ作成のテスト' do
     visit new_admin_user_path
     fill_in 'user[user_name]', with: 'test_user1'
-    fill_in 'user[email]', with: 'test_user1@gmail.com'
+    fill_in 'user[email]', with: 'test_user1test_user1@gmail.com'
     fill_in 'user[password]', with: 'test_user1@gmail.comtest_user1@gmail.com'
-    fill_in 'user[password_confirmation]', with: 'test_user1@gmail.comtest_user1@gmail.com  '
-    click_on 'commit'
+    fill_in 'user[password_confirmation]', with: 'test_user1@gmail.comtest_user1@gmail.com'
+    click_on '登録'
     expect(page).to have_content 'test_user1'
   end
 
   scenario 'ユーザ詳細のテスト' do
-    visit admin_user_path(@task1.id)
+    visit admin_user_path(@user1.id)
     expect(page).to have_content 'test_task_01'
+    expect(page).to have_content 'test_task_02'
+    expect(page).to have_content 'test_task_03'
   end
 
   scenario 'ユーザ更新テスト' do
-    visit edit_user_path(@task1.id)
+    visit edit_user_path(@user1.id)
     fill_in 'user[user_name]', with: 'test_user333'
     fill_in 'user[email]', with: 'test_user1@gmail.com'
-    fill_in 'user[password]', with: 'test_user1@gmail.comtest_user1@gmail.com'
-    fill_in 'user[password_confirmation]', with: 'test_user1@gmail.comtest_user1@gmail.com'
-    click_on 'commit'
+    fill_in 'user[password]', with: 'test_userrrrrrrrrr@gmail.com'
+    fill_in 'user[password_confirmation]', with: 'test_userrrrrrrrrr@gmail.com'
+    click_on '登録'
     expect(page).to have_text 'test_user333'
   end
 

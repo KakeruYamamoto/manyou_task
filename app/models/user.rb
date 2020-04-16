@@ -14,7 +14,7 @@ class User < ApplicationRecord
   private
 
   def user_should_have_at_least_one
-    if User.where(admin: true).count == 1
+    if User.where(admin: true).count == 0
       errors.add :base, '少なくとも1つ、管理用のアカウントが必要です'
       throw :abort
     end
