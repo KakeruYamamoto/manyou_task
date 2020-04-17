@@ -6,7 +6,7 @@
 ログイン画面にて、以下のパスワードで管理画面へのアクセスが可能。
 - Emailアドレス：admin@gmail.com
 - パスワード：admin@gmail.com
-
+- adminでログインすることで、ユーザ管理ページへのアクセスが可能。
 ## ホーム画面
 <img src="db/fixtures/ホーム画面.png" width="650px">
 
