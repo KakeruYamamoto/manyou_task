@@ -1,6 +1,11 @@
 # README
 # DIC課題(5/6)：株式会社万葉様新入社員教育課題
+
 ## Heroku：https://intense-tor-16889.herokuapp.com/
+
+ログイン画面にて、以下のパスワードで管理画面へのアクセスが可能。
+- Emailアドレス：admin@gmail.com
+- パスワード：admin@gmail.com
 
 ## ホーム画面
 <img src="db/fixtures/ホーム画面.png" width="650px">
